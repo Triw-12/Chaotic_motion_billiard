@@ -6,7 +6,7 @@ import matplotlib.animation as animation
 
 
 # liste_point = [(1,1),(10,2),(8,11),(1,11),(1,1)]  #billard ressemblant à Senai
-# liste_point_cercle = [((6,6),3), ((6, 6), 1)]
+# liste_point_ce rcle = [((6,6),3), ((6, 6), 1)]
 
 # liste_point = [(1,1),(25.4,1),(25.4,12.7),(1,12.7),(1,1)] #billard normal
 # liste_point_cercle = []
