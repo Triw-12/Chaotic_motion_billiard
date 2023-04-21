@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.animation as animation
 from recup_donnees import recup
 
-liste_point,liste_point_cercle,liste_boules = recup("senai.txt")
+liste_point,liste_point_cercle,liste_boules,rayon_boule,dt = recup("senai.txt")
 
 
 x_mod = [liste_point[i][0] for i in range(len(liste_point))]
@@ -152,14 +152,3 @@ ani = animation.FuncAnimation(fig, animate, get_pos, blit=True,
                       interval=interval, repeat=False, init_func=init)
 plt.show()
 
-
-
-
-
-
-
-
-"""
-Ctrl K + C
-Ctrl K + U
-"""

@@ -1,3 +1,5 @@
 Coordonnées mur : (1,1) (25.4,1) (25.4,12.7) (1,12.7) (1,1)
 Coordonnées cercle : 
 Liste boules : (12,12) (7,9) r (12,12) (7.01,9) b
+Rayon des boules : 0.275
+Delta temps : 0.01

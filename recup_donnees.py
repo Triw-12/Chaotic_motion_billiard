@@ -1,6 +1,3 @@
-
-
-
 def deuxpoint(ligne):
     i = 0
     while ligne[i] != ":":
@@ -12,7 +9,7 @@ def val_tupl(tpl):
     nb = tpl.split(",")
     nb1 = nb[0][1:]
     nb2 = nb[1][:-1]
-    print(nb1,nb2)
+    #print(nb1,nb2)
     return float(nb1), float(nb2)
 
 
@@ -26,7 +23,7 @@ def recup(nom_fichier):
             mur[r] = val_tupl(mur[r])
         except :
             assert False, "Ce ne sont pas des tuples"
-    print(mur)
+    #print(mur)
 
 
     ligne = fichier.readline().strip()
@@ -38,7 +35,7 @@ def recup(nom_fichier):
             cercle_f.append([val_tupl(cercle[r]),float(cercle[r+1])])
         except:
             assert False, "Format incorrect"
-    print(cercle_f)
+    #print(cercle_f)
     
     
     ligne = fichier.readline().strip()
@@ -51,12 +48,28 @@ def recup(nom_fichier):
             boule_f.append([val_tupl(boule[r]),val_tupl(boule[r+1]),boule[r+2]])
         except:
             assert False, "Format incorrect"
-    print(boule_f)
+    #print(boule_f)
+
+    ligne = fichier.readline().strip()
+    i = deuxpoint(ligne)
+    rayon = ligne[i:]
+    try:
+        rayon = float(rayon)
+    except:
+        assert False, "Format incorrect"
+    
+    ligne = fichier.readline().strip()
+    i = deuxpoint(ligne)
+    dt = ligne[i:]
+    try:
+        dt = float(dt)
+    except:
+        assert False, "Format incorrect"
 
     fichier.close()
-    return mur,cercle_f,boule_f
+    return mur,cercle_f,boule_f,rayon,dt
 
 
 if __name__ == "__main__":
-    m,c,b = recup("senai.txt")
-    print(m,c,b)
+    m,c,b,r,t = recup("senai.txt")
+    print(m,c,b,r,t)

@@ -1,3 +1,5 @@
 Coordonnées mur : 
 Coordonnées cercle : 
 Liste boules : 
+Rayon des boules : 0.275
+Delta temps : 0.01
