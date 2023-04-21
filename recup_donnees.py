@@ -17,7 +17,7 @@ def val_tupl(tpl):
 
 
 def recup(nom_fichier):
-    fichier = open(nom_fichier,"r",encoding="utf-8")
+    fichier = open("modele/"+nom_fichier,"r",encoding="utf-8")
     ligne = fichier.readline().strip()
     i = deuxpoint(ligne)
     mur = ligne[i:].split(" ")
@@ -29,27 +29,34 @@ def recup(nom_fichier):
     print(mur)
 
 
-
-
     ligne = fichier.readline().strip()
     i = deuxpoint(ligne)
     cercle = ligne[i:].split(" ")
+    cercle_f = []
     for r in range(0,len(cercle),2):
         try:
-            cercle[r] = [val_tupl(cercle[r]),float(cercle[r+1])]
+            cercle_f.append([val_tupl(cercle[r]),float(cercle[r+1])])
         except:
             assert False, "Format incorrect"
-    
-    
-    
+    print(cercle_f)
     
     
     ligne = fichier.readline().strip()
-
+    i = deuxpoint(ligne)
+    boule = ligne[i:].split(" ")
+    boule_f = []
+    for r in range(0,len(boule),3):
+        try:
+            print(boule[r],boule[r+1],boule[r+2])
+            boule_f.append([val_tupl(boule[r]),val_tupl(boule[r+1]),boule[r+2]])
+        except:
+            assert False, "Format incorrect"
+    print(boule_f)
 
     fichier.close()
-    return mur,cercle
+    return mur,cercle_f,boule_f
 
 
 if __name__ == "__main__":
-    recup("billiard_simple.txt")
+    m,c,b = recup("senai.txt")
+    print(m,c,b)

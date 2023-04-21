@@ -1,20 +1,9 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.animation as animation
+from recup_donnees import recup
 
-#liste_point = [(10,10),(30,30),(50,20),(20,50),(10,10)] #triangle chelou
-
-
-# liste_point = [(1,1),(10,2),(8,11),(1,11),(1,1)]  #billard ressemblant à Senai
-# liste_point_ce rcle = [((6,6),3), ((6, 6), 1)]
-
-# liste_point = [(1,1),(25.4,1),(25.4,12.7),(1,12.7),(1,1)] #billard normal
-# liste_point_cercle = []
-# liste_boules = [[(12,12),(7,9),'r'],[(12,12),(7.01,9),'b']]
-
-liste_point = [(1,1),(25,1),(25,25),(1,25),(1,1)] #senai
-liste_point_cercle = [((12.5,12.5),7)]
-liste_boules = [[(3,3),(7,9),'r'],[(3,3),(7,9),'b']]
+liste_point,liste_point_cercle,liste_boules = recup("senai.txt")
 
 
 x_mod = [liste_point[i][0] for i in range(len(liste_point))]
@@ -24,6 +13,7 @@ y_mod = [liste_point[i][1] for i in range(len(liste_point))]
 XMAX = max([liste_point[i][0] for i in range(len(liste_point))])   +  1
 YMAX = max([liste_point[i][1] for i in range(len(liste_point))])   +  1
 pres = max(XMAX,YMAX)
+
 rayon_boule  = 0.275
 dt = 0.01
 
