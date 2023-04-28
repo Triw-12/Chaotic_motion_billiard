@@ -30,6 +30,8 @@ def recup(nom_fichier):
     i = deuxpoint(ligne)
     cercle = ligne[i:].split(" ")
     cercle_f = []
+    if cercle == ['']:
+        cercle = []
     for r in range(0,len(cercle),2):
         try:
             cercle_f.append([val_tupl(cercle[r]),float(cercle[r+1])])
@@ -56,7 +58,10 @@ def recup(nom_fichier):
     try:
         rayon = float(rayon)
     except:
-        assert False, "Format incorrect"
+        if cercle == []:
+            rayon = 0
+        else:
+            assert False, "Format incorrect"
     
     ligne = fichier.readline().strip()
     i = deuxpoint(ligne)
@@ -71,5 +76,5 @@ def recup(nom_fichier):
 
 
 if __name__ == "__main__":
-    m,c,b,r,t = recup("senai.txt")
+    m,c,b,r,t = recup("billiard_simple.txt")
     print(m,c,b,r,t)

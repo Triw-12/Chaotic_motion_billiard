@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.animation as animation
 from recup_donnees import recup
 
-liste_point,liste_point_cercle,liste_boules,rayon_boule,dt = recup("senai.txt")
+liste_point,liste_point_cercle,liste_boules,rayon_boule,dt = recup("billiard_simple.txt")
 
 
 x_mod = [liste_point[i][0] for i in range(len(liste_point))]
