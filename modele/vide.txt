@@ -1,5 +1,5 @@
 Coordonnées mur : (20,20) (20.1,20)
 Coordonnées cercle : 
-Liste boules : (1,1) (1,0) r (0,0) (0,0) b
+Liste boules : (5,5) (4,0) r (0,0) (0,0) b
 Rayon des boules : 0.0615
 Delta temps : 0.005
