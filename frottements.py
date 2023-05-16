@@ -65,10 +65,11 @@ class Cercle :
 
 
 class Boule :
-    def __init__ (self,x,y,vx,vy,ux,uy,c) :
+    def __init__ (self,x,y,vx,vy,w0,c) :
         self.vect = x + y*1j
         self.vvect = vx + vy*1j
-        self.u = ux + uy*1j
+        self.w0 = w0*1j
+        self.u = self.vvect + rayon_boule*self.w0*1j
         self.color = c
     def rebond_d(self,d):
         self.vvect = 2*scalaire(d.unit,self.vvect)*(d.unit) - self.vvect
@@ -86,7 +87,7 @@ liste_cercle = [Cercle(liste_point_cercle[i][1],liste_point_cercle[i][0][0],list
 
 def get_pos(t=0):
     """A generator yielding the ball's position at time t."""
-    boules = [Boule(liste_boules[i][0][0],liste_boules[i][0][1],liste_boules[i][1][0],liste_boules[i][1][1],0,3,liste_boules[i][2]) for i in range(len(liste_boules))]
+    boules = [Boule(liste_boules[i][0][0],liste_boules[i][0][1],liste_boules[i][1][0],liste_boules[i][1][1],3,liste_boules[i][2]) for i in range(len(liste_boules))]
     while True:
         t += dt
         posx = []
