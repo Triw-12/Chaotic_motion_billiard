@@ -2,9 +2,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.animation as animation
 from recup_donnees import recup
+import time as t
 
 liste_point,liste_point_cercle,liste_boules,rayon_boule,dt = recup("vide.txt")
-
+"""
+Rayon en mètres
+dt en secondes 
+w en rad/s
+"""
 
 x_mod = [liste_point[i][0] for i in range(len(liste_point))]
 y_mod = [liste_point[i][1] for i in range(len(liste_point))]
@@ -14,11 +19,11 @@ XMAX = max([liste_point[i][0] for i in range(len(liste_point))])   +  1
 YMAX = max([liste_point[i][1] for i in range(len(liste_point))])   +  1
 pres = max(XMAX,YMAX)
 
-rayon_boule  = 0.275
-dt = 0.01
-us = 0.2
-ur = 0.01
-g = 9.81
+#dt *= 6.213*2 #Pour avoir en temps réel
+us = 0.2 #Sans unité
+ur = 0.01# Sans unité
+g = 9.81 #en m/s^-2
+vitesse_rota = [-100,0] #Environ 3 tours par secondes
 
 def scalaire (v1,v2):
     return v1.real*v2.real + v1.imag*v2.imag
@@ -68,10 +73,10 @@ class Cercle :
 
 class Boule :
     def __init__ (self,x,y,vx,vy,w0,c) :
-        self.vect = x + y*1j
+        self.vect = x + y*1j 
         self.vvect = vx + vy*1j
         self.w0 = w0
-        self.u = self.vvect + rayon_boule*self.w0*1j
+        self.u = self.vvect + rayon_boule*self.w0*1j #cf équation
         self.color = c
         if w0 != 0:
             self.start_effect()
@@ -83,6 +88,7 @@ class Boule :
     def start_effect(self):
             self.v1 = (5/7)*self.vvect-(2/7)*rayon_boule*self.w0*1j
             self.t = 0
+            self.t_reel = t.time()
             self.t1 = (2/7)*abs(self.u)/(us*g)
             self.t2 = self.t1 + (7/5)*abs(self.v1)/(ur*g)
             print(self.t1,self.t2)
@@ -92,11 +98,13 @@ class Boule :
                 self.vvect -= us*g*(self.u/abs(self.u))*dt
                 #self.u += (7/2)*us*g*dt
             elif self.t < self.t2:
-                print("TOp")
+                #print("TOp")
                 self.vvect -= (5/7)*ur*g*dt
             else:
                 self.w0 = 0
+                print(self.vvect)
             self.t += dt
+            print(self.t,t.time() - self.t_reel)
         self.vect += self.vvect * dt
 
 
@@ -106,7 +114,7 @@ liste_droite = [Droite(liste_point[i][0],liste_point[i][1],liste_point[i+1][0],l
 liste_cercle = [Cercle(liste_point_cercle[i][1],liste_point_cercle[i][0][0],liste_point_cercle[i][0][1]) for i in range(len(liste_point_cercle))]
 
 
-vitesse_rota = [-50,0]
+
 def get_pos(t=0):
     """A generator yielding the ball's position at time t."""
     boules = [Boule(liste_boules[i][0][0],liste_boules[i][0][1],liste_boules[i][1][0],liste_boules[i][1][1],vitesse_rota[i],liste_boules[i][2]) for i in range(len(liste_boules))]
