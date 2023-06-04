@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.animation as animation
 from recup_donnees import recup
+import time
 
 liste_point,liste_point_cercle,liste_boules,rayon_boule,dt = recup("senai.txt")
 
@@ -86,7 +87,7 @@ liste_cercle = [Cercle(liste_point_cercle[i][1],liste_point_cercle[i][0][0],list
 def get_pos(t=0):
     """A generator yielding the ball's position at time t."""
     boules = [Boule(liste_boules[i][0][0],liste_boules[i][0][1],liste_boules[i][1][0],liste_boules[i][1][1],liste_boules[i][2]) for i in range(len(liste_boules))]
-    while True:
+    while t < 10:
         t += dt
         posx = []
         posy = []
@@ -148,6 +149,6 @@ xdata2, ydata2 = [], []
 
 interval = 1000*dt
 ani = animation.FuncAnimation(fig, animate, get_pos, blit=True,
-                      interval=interval, repeat=False, init_func=init)
+                      interval=interval, repeat=True, init_func=init)
 plt.show()
-
+ani.save("test.mp4")

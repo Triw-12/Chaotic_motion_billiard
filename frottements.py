@@ -78,6 +78,8 @@ class Boule :
         self.w0 = w0
         self.u = self.vvect + rayon_boule*self.w0*1j #cf équation
         self.color = c
+        self.vx = []
+        self.vy = []
         if w0 != 0:
             self.start_effect()
     def rebond_d(self,d):
@@ -91,20 +93,31 @@ class Boule :
             self.t_reel = t.time()
             self.t1 = (2/7)*abs(self.u)/(us*g)
             self.t2 = self.t1 + (7/5)*abs(self.v1)/(ur*g)
+            self.r = [True,True,True]
             print(self.t1,self.t2)
     def avance(self,dt):
         if self.w0 != 0:
             if self.t < self.t1:
+                if self.r[0] :
+                    print("Sliding")
+                    self.r[0] = False
                 self.vvect -= us*g*(self.u/abs(self.u))*dt
                 #self.u += (7/2)*us*g*dt
             elif self.t < self.t2:
+                if self.r[1] :
+                    print("Rolling")
+                    self.r[1] = False
                 #print("TOp")
                 self.vvect -= (5/7)*ur*g*dt
             else:
+                if self.r[2] :
+                    print("Stop")
+                    self.r[2] = False
                 self.w0 = 0
                 print(self.vvect)
             self.t += dt
-            print(self.t,t.time() - self.t_reel)
+            print(abs(self.vvect))
+            #print(self.t,t.time() - self.t_reel)
         self.vect += self.vvect * dt
 
 
