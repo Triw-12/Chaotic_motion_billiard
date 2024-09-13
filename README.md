@@ -1,8 +1,8 @@
-# TIPE - Modélisation d'un billard
+# Modélisation d'un billard
 
 Projet en commun avec Enzo
 
-## But du TIPE
+## But du projet
 - Le but de ce projet est d'étudier une boule de billard, ses mouvements chaotiques et les effets qu'elle peut avoir
 
 ## Arrangement des fichiers
